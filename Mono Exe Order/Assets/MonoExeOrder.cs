@@ -15,7 +15,7 @@ public class MonoExeOrder : MonoBehaviour
     void LogFrameStart()
     {
         if ( showFrameLog ) {
-            Debug.LogFormat( "[Frame {0}] ----- Start -----", currFrameNum );
+            Debug.LogFormat( "<color=lightblue>[Frame {0}] ----- Start -----</color>", currFrameNum );
         }
     }
 
@@ -53,6 +53,17 @@ public class MonoExeOrder : MonoBehaviour
     void Start()
     {
         LogFuncFlow( MethodBase.GetCurrentMethod().Name );
+        StartCoroutine( CoNull() );
+    }
+
+    IEnumerator CoNull() {
+
+        LogFuncFlow( "Start Coroutine" );
+
+        while ( true){
+            LogFuncFlow( "yield return null" );
+            yield return null;
+        }
     }
 
     IEnumerator CoWaitForFixedUpdate()
